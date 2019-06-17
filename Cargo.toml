@@ -4,4 +4,5 @@ members = [
   "lib/tokenizer-common",
   "lib/tokenizer-nom3",
   "lib/tokenizer-nom4",
+  "lib/tokenizer-nom5",
 ]
