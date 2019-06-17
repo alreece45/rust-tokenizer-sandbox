@@ -1,0 +1,8 @@
+[package]
+name = "tokenizer_iterative1"
+version = "0.1.0"
+edition = "2018"
+publish = false
+
+[dependencies]
+tokenizer_common = { path = "../tokenizer-common" }
