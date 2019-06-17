@@ -1,0 +1,6 @@
+[workspace]
+
+members = [
+  "lib/tokenizer-common",
+  "lib/tokenizer-nom3",
+]
