@@ -1,0 +1,9 @@
+[package]
+name = "tokenizer_nom5"
+version = "0.1.0"
+edition = "2018"
+publish = false
+
+[dependencies]
+nom = "5.0.0-beta1"
+tokenizer_common = { path = "../tokenizer-common" }

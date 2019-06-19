@@ -1,0 +1,11 @@
+[workspace]
+
+members = [
+  "bin/tokenizer-benchmark",
+  "lib/tokenizer-common",
+  "lib/tokenizer-iterative1",
+  "lib/tokenizer-nom3",
+  "lib/tokenizer-nom4",
+  "lib/tokenizer-nom5",
+  "lib/tokenizer-regex",
+]
