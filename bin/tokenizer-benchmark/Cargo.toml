@@ -1,0 +1,20 @@
+[package]
+name = "tokenizer_sandbox"
+version = "0.1.0"
+edition = "2018"
+publish = false
+
+[features]
+default = ["nom5", "nom4", "nom3"]
+nom5 = ["tokenizer_nom5"]
+
+nom4 = ["tokenizer_nom4"]
+nom3 = ["tokenizer_nom3"]
+
+[dependencies]
+criterion = "0.2.11"
+tokenizer_iterative1 = { path = "../../lib/tokenizer-iterative1" }
+tokenizer_nom3 = { path = "../../lib/tokenizer-nom3", optional = true }
+tokenizer_nom4 = { path = "../../lib/tokenizer-nom4", optional = true }
+tokenizer_nom5 = { path = "../../lib/tokenizer-nom5", optional = true }
+tokenizer_regex = { path = "../../lib/tokenizer-regex" }
