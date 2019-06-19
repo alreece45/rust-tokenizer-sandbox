@@ -199,16 +199,13 @@ pub mod tests {
         I: Iterator<Item = &'a [u8]>,
     {
         expect_tokens!(
-            tokenizer_factory,
-            b" \"test 4001\"
-            + b\"test 4002\"
-            + \"test4003 ()\\\"*+- test4004\"
-            + b\"test4005 +-\\\" + test4006\"
-            + beginning_with_a_b",
+            tokenizer_factory, br#"
+            "test 4001" + b"test 4002" + "test4003 ()\"*+-\\ test4004"
+            + b"test4005 +-\" + test4006" + beginning_with_a_b"#,
 
-            b"\"test 4001\"", b"+", b"b\"test 4002\"", b"+",
-            b"\"test4003 ()\\\"*+- test4004\"", b"+",
-            b"b\"test4005 +-\\\" + test4006\"", b"+",
+            br#""test 4001""#, b"+", br#"b"test 4002""#, b"+",
+            br#""test4003 ()\"*+-\\ test4004""#, b"+",
+            br#"b"test4005 +-\" + test4006""#, b"+",
             b"beginning_with_a_b"
         );
     }
