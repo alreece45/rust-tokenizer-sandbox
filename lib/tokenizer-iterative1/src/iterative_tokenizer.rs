@@ -11,7 +11,14 @@ impl<'a> SingleIteratorTokenizer<'a> {
     }
 
     pub fn parse_string_contents(&mut self, string_start: usize) -> Option<&'a [u8]> {
-        let mut end = 0;
+        let mut end = string_start;
+
+        if self.remaining.len() <= string_start {
+            let contents = &self.remaining[..];
+            self.remaining = &self.remaining[self.remaining.len()..];
+            return Some(contents);
+        }
+
         for slice in (&self.remaining[string_start..]).split(|&c| c == b'"') {
             end += 1 + slice.len();
             if !slice.ends_with(b"\\") {
@@ -19,12 +26,15 @@ impl<'a> SingleIteratorTokenizer<'a> {
             }
         }
 
-        if end == 0 {
+        if end == string_start {
             return None;
         }
+        if end >= self.remaining.len() {
+            end = self.remaining.len();
+        }
 
-        let token = &self.remaining[..(end + string_start)];
-        self.remaining = &self.remaining[(end + string_start)..];
+        let token = &self.remaining[..end];
+        self.remaining = &self.remaining[end..];
         Some(token)
     }
 }
