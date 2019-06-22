@@ -1,20 +1,17 @@
 
-
-use std::collections::HashMap;
 use std::time::Instant;
 
+use crate::session::Session;
 use tokenizer_iterative1::SingleIteratorTokenizer;
 
-pub struct Shell {
-    user_config: HashMap<String, String>,
-    user_definitions: HashMap<String, String>,
+pub struct Shell<'a> {
+    session: Session<'a>,
 }
 
-impl Shell {
+impl<'a> Shell<'a> {
     pub fn new() -> Self {
         Self {
-            user_config: HashMap::new(),
-            user_definitions: HashMap::new(),
+            session: Session::new(),
         }
     }
 
@@ -26,11 +23,11 @@ impl Shell {
             Some("delete") => {
                 while let Some(name) = get_next_part(&mut unprocessed) {
                     println!("Cleared definition: {}", name);
-                    self.user_definitions.remove(name);
+                    self.session.remove_definition(name);
                 }
             }
             Some("var") => {
-                for (name, value) in &self.user_definitions {
+                for (name, value) in self.session.definitions() {
                     println!("{} =  {}", name, value);
                 }
             }
@@ -43,24 +40,21 @@ impl Shell {
 
                 let config_name = config_name.unwrap();
                 if unprocessed.len() > 0 {
-                    self.user_config
-                        .insert(config_name.into(), unprocessed.into());
+                    self.session.set_option(config_name.to_string(), unprocessed.to_string());
                     println!("Config: Set {}", config_name);
                 } else {
-                    match self.user_config.remove(config_name) {
+                    match self.session.remove_option(config_name) {
                         Some(_) => println!("Config: Removed {}", config_name),
                         None => println!("Config: {} was not set", config_name),
                     }
                 }
             }
             Some("unset") => {
-                let name = get_next_part(&mut unprocessed);
-                if name.is_none() {
+                if let Some(name) = get_next_part(&mut unprocessed) {
+                    self.session.remove_definition(name);
+                } else {
                     println!("Error: missing name for unset command");
-                    return;
                 }
-                self.user_config
-                    .insert(name.unwrap().into(), unprocessed.into());
             }
             Some("help") => println!(
                 r#"
@@ -85,8 +79,7 @@ Available Commands:
                         return;
                     }
 
-                    self.user_definitions
-                        .insert(variable_name.into(), unprocessed.into());
+                    self.session.define(variable_name.to_string(), unprocessed.to_string());
                 } else {
                     let collect_tokenization_statistics = true;
 
@@ -140,6 +133,7 @@ Available Commands:
                         let max_bytes_ns = max_ns as f64 / byte_count as f64;
                         let bytes_per_second: f64 = ops_per_second * byte_count as f64;
 
+                        #[cfg_attr(rustfmt, rustfmt_skip)]
                         println!(
                             r#"
     /------------------ Tokenization Performance ------------------\

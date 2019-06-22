@@ -4,6 +4,7 @@ use rustyline::Editor;
 use rustyline::error::ReadlineError;
 
 mod command;
+mod session;
 
 use command::Shell;
 
