@@ -97,7 +97,7 @@ impl<'a> Iterator for SingleInlineIteratorTokenizer<'a> {
 
 #[cfg(test)]
 mod tests {
-    use tokenizer_common::test_tokenizer;
+    use tokenizer_tests::test_tokenizer;
 
     use super::SingleInlineIteratorTokenizer;
 

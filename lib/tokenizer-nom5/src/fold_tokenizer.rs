@@ -35,7 +35,7 @@ impl Nom5Tokenizer for Nom5FoldTokenizer {
 
 #[cfg(test)]
 mod tests {
-    use tokenizer_common::test_tokenizer;
+    use tokenizer_tests::test_tokenizer;
 
     use super::super::Nom5VecTokenIterator;
 

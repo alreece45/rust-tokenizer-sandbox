@@ -29,7 +29,7 @@ impl Nom4Tokenizer for Nom4VecTokenizer {
 
 #[cfg(test)]
 mod tests {
-    use tokenizer_common::test_tokenizer;
+    use tokenizer_tests::test_tokenizer;
 
     use super::super::Nom4VecTokenIterator;
 

@@ -1,3 +1,4 @@
+
 use lazy_static::lazy_static;
 use regex::bytes::{Matches, Regex};
 
@@ -36,7 +37,7 @@ impl<'a> Iterator for SingleFindRegexTokenizer<'a> {
 mod tests {
     use super::SingleFindRegexTokenizer;
 
-    use tokenizer_common::test_tokenizer;
+    use tokenizer_tests::test_tokenizer;
 
     test_tokenizer!(SingleFindRegexTokenizer::from_slice);
 }

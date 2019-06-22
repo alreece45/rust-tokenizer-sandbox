@@ -31,7 +31,7 @@ impl Nom3Tokenizer for Nom3FoldTokenizer {
 
 #[cfg(test)]
 mod tests {
-    use tokenizer_common::test_tokenizer;
+    use tokenizer_tests::test_tokenizer;
 
     use super::super::Nom3FoldTokenIterator;
 

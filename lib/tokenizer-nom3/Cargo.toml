@@ -6,4 +6,6 @@ publish = false
 
 [dependencies]
 nom = "3.2.1"
-tokenizer_common = { path = "../tokenizer-common" }
+
+[dev-dependencies]
+tokenizer_tests = { path = "../tokenizer-tests" }
