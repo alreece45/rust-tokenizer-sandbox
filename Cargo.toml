@@ -1,6 +1,7 @@
 [workspace]
 
 members = [
+  "bin/cli",
   "bin/tokenizer-benchmark",
   "lib/tokenizer-common",
   "lib/tokenizer-iterative1",

@@ -1,0 +1,16 @@
+[package]
+name = "tokenizer"
+version = "0.1.0"
+edition = "2018"
+publish = false
+
+[dependencies]
+clap = "2.33.0"
+rustyline = "4.1.0"
+colorful = "0.2.1"
+
+tokenizer_iterative1 = { path = "../../lib/tokenizer-iterative1" }
+#tokenizer_nom3 = { path = "../../lib/tokenizer-nom3", optional = true }
+#tokenizer_nom4 = { path = "../../lib/tokenizer-nom4", optional = true }
+#tokenizer_nom5 = { path = "../../lib/tokenizer-nom5", optional = true }
+#tokenizer_regex = { path = "../../lib/tokenizer-regex" }
