@@ -1,4 +1,3 @@
-
 use lazy_static::lazy_static;
 use regex::bytes::{Matches, Regex};
 
@@ -13,7 +12,7 @@ impl<'a> SingleFindRegexTokenizer<'a> {
                 r#"(?x)(
                     (?:(:?b|r*)?"(\\"|[^"])+")|
                     (?:&&|\|\||==|!=|\*\*|\.\.)|
-                    (?:[()\[\],.\-+*^/&|%!])|
+                    (?:[{}()\[\],.\-+*^/&|%!])|
                     (?:[^()\[\],.\-+*^/&|%!"\s]+)
                 )"#
             )
